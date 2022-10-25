@@ -5,7 +5,6 @@ const sequelize = require('../models/index.js').sequelize;
 var initModels = require("../models/init-models");
 var models = initModels(sequelize); 
 
-
 /* GET users listing.
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
@@ -14,14 +13,18 @@ router.get('/', function(req, res, next) {
 
 /* GET games. */
 router.get('/', function(req, res, next){
+  //var datos 
   models.games.findAll({ 
     attributes: { exclude: ["updatedAt", "createdAt"] }
-  })
+  }) 
   .then(games => {
     res.send(games)
   })
   .catch(error => res.status(400).send(error))
 });
+
+
+
 
 /* GET games by ID. */
 router.get('/:idgame', (req, res, next) => {
